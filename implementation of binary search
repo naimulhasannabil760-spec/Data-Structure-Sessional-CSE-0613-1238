@@ -1,0 +1,31 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	
+	int arr[]={40,10,70,20,50,90};
+	int n = sizeof(arr)/sizeof(arr[0]);
+	sort(arr,arr+n);
+	int key = 20;
+	int low = 0;
+	int high = n-1;
+	while(low<=high){
+		int mid = (high+low)/2;
+		if(key==arr[mid])
+		{
+			cout << "Found at index " << mid;
+			return 0;
+		}
+		else if(key>arr[mid])
+		{
+			low=mid+1;
+		}
+		else{
+			high=mid-1;
+		}
+	}
+	cout << "Not found";
+	
+	
+}
