@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> q;
+void enqueue(int x) {
+    q.push_back(x);
+}
+void dequeue() {
+    if (q.empty()) {
+        cout << "Queue Underflow!\n";
+        return;
+    }
+    q.erase(q.begin());
+}
+int frontElement() {
+    if (q.empty()) {
+        cout << "Queue is Empty!\n";
+        return -1;
+    }
+    return q.front();
+}
+bool isEmpty() {
+    return q.empty();
+}
+void display() {
+    if (isEmpty()) {
+        cout << "Queue is Empty!\n";
+        return;
+    }
+    cout << "Queue: ";
+    for (int x : q) {
+        cout << x << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+
+    int choice, x;
+    while (true) {
+
+        cout << "1. Enqueue\n";
+        cout << "2. Dequeue\n";
+        cout << "3. Front\n";
+        cout << "4. Display\n";
+        cout << "5. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            cout << "Enter value: ";
+            cin >> x;
+            enqueue(x);
+        }
+        else if (choice == 2) {
+            dequeue();
+        }
+        else if (choice == 3) {
+            if (!isEmpty())
+                cout << "Front element: " << frontElement() << endl;
+        }
+        else if (choice == 4) {
+            display();
+        }
+        else if (choice == 5) {
+            break;
+        }
+        else {
+            cout << "Invalid choice!\n";
+        }
+    }
+    return 0;
+}
