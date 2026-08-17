@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> q;
+int front = -1, tail = -1, mx;
+
+bool isEmpty() {
+    return front == -1;
+}
+
+bool isFull() {
+    return (tail + 1) % mx == front;
+}
+
+void enqueue(int x) {
+    if (isFull()) {
+        cout << "Queue Overflow!\n";
+        return;
+    }
+
+    if (isEmpty()) {
+        front = tail = 0;
+    }
+    else {
+        tail = (tail + 1) % mx;
+    }
+
+    q[tail] = x;
+}
+
+void dequeue() {
+    if (isEmpty()) {
+        cout << "Queue Underflow!\n";
+        return;
+    }
+
+    if (front == tail) {
+        front = tail = -1;
+    }
+    else {
+        front = (front + 1) % mx;
+    }
+}
+
+int top() {
+    if (isEmpty()) {
+        cout << "Queue is Empty!\n";
+        return -1;
+    }
+    return q[front];
+}
+
+void display() {
+    if (isEmpty()) {
+        cout << "Queue is Empty!\n";
+        return;
+    }
+    cout << "Queue: ";
+    int i = front;
+    while (true) {
+        cout << q[i] << " ";
+
+        if (i == tail)
+            break;
+
+        i = (i + 1) % mx;
+    }
+    cout << endl;
+}
+
+int main() {
+    cout << "Enter queue size: ";
+    cin >> mx;
+    q.resize(mx);
+    int choice, x;
+
+    while (true) {
+        cout << "1. Enqueue\n";
+        cout << "2. Dequeue\n";
+        cout << "3. Front\n";
+        cout << "4. Display\n";
+        cout << "5. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+        if (choice == 1) {
+            cout << "Enter value: ";
+            cin >> x;
+            enqueue(x);
+        }
+        else if (choice == 2) {
+            dequeue();
+        }
+        else if (choice == 3) {
+            if (!isEmpty())
+                cout << "Front element: " << top() << endl;
+        }
+        else if (choice == 4) {
+            display();
+        }
+        else if (choice == 5) {
+            break;
+        }
+        else {
+            cout << "Invalid choice!\n";
+        }
+    }
+    return 0;
+}
