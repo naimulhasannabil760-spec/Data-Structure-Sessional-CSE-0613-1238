@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> st;
+void push(int x) {
+    st.push_back(x);
+}
+void pop() {
+    if (st.empty()) {
+        cout << "Stack Underflow!\n";
+        return;
+    }
+    st.pop_back();
+}
+int top() {
+    if (st.empty()) {
+        cout << "Stack is Empty!\n";
+        return -1;
+    }
+    return st.back();
+}
+bool isEmpty() {
+    return st.empty();
+}
+void display() {
+    if (isEmpty()) {
+        cout << "Stack is Empty!\n";
+        return;
+    }
+    cout << "Stack: ";
+    for (int i = st.size() - 1; i >= 0; i--) {
+        cout << st[i] << " ";
+    }
+    cout << endl;
+}
+int main() {
+
+    int choice, x;
+    while (true) {
+        cout << "1. Push\n";
+        cout << "2. Pop\n";
+        cout << "3. Top\n";
+        cout << "4. Display\n";
+        cout << "5. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            cout << "Enter value: ";
+            cin >> x;
+            push(x);
+        }
+        else if (choice == 2) {
+            pop();
+        }
+        else if (choice == 3) {
+            if (!isEmpty())
+                cout << "Top element: " << top() << endl;
+        }
+        else if (choice == 4) {
+            display();
+        }
+        else if (choice == 5) {
+            break;
+        }
+        else {
+            cout << "Invalid choice!\n";
+        }
+    }
+    return 0;
+}
